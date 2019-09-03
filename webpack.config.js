@@ -1,35 +1,49 @@
 const path = require('path');
+const webpack = require('webpack');
 const px2rem = require('postcss-px2rem');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-let webpack = require('webpack');
+const devMode = process.env.NODE_ENV !== 'production';
+
+console.log(devMode, 'devModedevMode');
 
 module.exports = {
   entry: {
-    index: './src/Index/index.js',
-    page2: './src/Page2/index.js',
+    main: 'src/main/index.js', 
+    page: 'src/page/index.js'
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].bundle.[hash].js'
+    filename: '[name].js',
+    path: path.resolve(__dirname, './dist')
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: ['babel-loader'],
+        use: 'babel-loader',
         exclude: /node_modules/
       },
       {
-        test: /\.(sc|c)ss$/,
+        test: /\.(sa|sc|c|le)ss$/,
         use:[
           'style-loader',
           {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../',
+              hmr: devMode
+            }
+          },
+          {
             loader: 'css-loader',
             options: {
-              modules: true, // 是否开启css-module
-              localIdentName: '[name]_[local]-[hash:base64:5]'
+              modules: {
+                localIdentName: '[name]_[local]-[hash:base64:5]'
+              }
+              // modules: true, // 是否开启css-module
+              // localIdentName: '[name]_[local]-[hash:base64:5]'
             }
           },
           {
@@ -57,31 +71,69 @@ module.exports = {
     ]
   },
 
+  // 代码分离
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       common: {
+  //         name: 'common',
+  //         chunks: 'initial',
+  //         priority: 2,
+  //         minChunks: 2,
+  //       },
+  //       reactBase: {
+  //         name: 'reactBase',
+  //         test: module => {
+  //           return /react|redux|prop-types/.test(module.context);
+  //         },
+  //         chunks: 'initial',
+  //         priority: 10,
+  //       },
+  //       styles: {
+  //         name: 'styles',
+  //         test: /\.css$/,
+  //         chunks: 'all',
+  //         enforce: true,
+  //         priority: 20
+  //       }
+  //     }
+  //   },
+  // },
+
   resolve: {
     alias: {
-      component: path.resolve(__dirname, 'src'),
+      src: path.resolve(__dirname, 'src'),
       component: path.resolve(__dirname, './components'),
     },
     extensions: ['.js', '.json', '.jsx'],
   },
   
   plugins: [
-    new CleanWebpackPlugin({path: path.resolve(__dirname, 'dist')}),
+    new CleanWebpackPlugin({path: './dist'}),
     new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      chunks: ['index'],
+      title: 'main',
+      filename: 'main.html',
+      chunks: ['main'],
       hash: true,
       template: './index.html'
     }),
     new HtmlWebpackPlugin({
-      filename: 'page2.html',
-      chunks: ['page2'],
+      title: 'page',
+      filename: 'page.html',
+      chunks: ['page'],
       hash: true,
       template: './index.html'
     }),
   ],
   devServer: {
-    hot: true
+    contentBase: path.join(__dirname, "./dist"),
+    hot: true,
+    port: 3000,
+    compress: true
   }
 }

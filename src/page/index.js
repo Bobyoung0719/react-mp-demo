@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 
-class Page2 extends Component {
+class Page extends Component {
   render() {
     return (
       <div>
@@ -14,6 +14,6 @@ class Page2 extends Component {
 }
 
 ReactDOM.render(
-  <Page2 />,
+  <Page />,
   document.getElementById('root')
 );

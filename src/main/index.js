@@ -2,32 +2,34 @@ import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import './index.scss';
 
-class Index extends Component {
+class Main extends Component {
   constructor(props) {
     super(props);
     
     this.handleToPage = this.handleToPage.bind(this);
   }
+
+
+  componentDidMount() {
+    console.log('-----');
+  }
+  
   
   handleToPage() {
-    this.props.history.push('/page2')
+    console.log('duoye');
   }
 
   render() {
     return (
       <div>
-
-       
-
-        <input 
-          placeholder="我是输入框"
-        />
+      hahahahah 
+        <button onClick={this.handleToPage}>click</button>
       </div>
     );
   }
 }
 
 ReactDOM.render(
-  <Index />,
+  <Main />,
   document.getElementById('root')
 );
