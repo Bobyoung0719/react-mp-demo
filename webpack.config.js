@@ -7,8 +7,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
-console.log(devMode, 'devModedevMode');
-
 module.exports = {
   entry: {
     main: 'src/main/index.js', 
@@ -39,11 +37,10 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
+              // 开启cssmodule
               modules: {
                 localIdentName: '[name]_[local]-[hash:base64:5]'
               }
-              // modules: true, // 是否开启css-module
-              // localIdentName: '[name]_[local]-[hash:base64:5]'
             }
           },
           {
@@ -72,33 +69,14 @@ module.exports = {
   },
 
   // 代码分离
-  // optimization: {
-  //   splitChunks: {
-  //     cacheGroups: {
-  //       common: {
-  //         name: 'common',
-  //         chunks: 'initial',
-  //         priority: 2,
-  //         minChunks: 2,
-  //       },
-  //       reactBase: {
-  //         name: 'reactBase',
-  //         test: module => {
-  //           return /react|redux|prop-types/.test(module.context);
-  //         },
-  //         chunks: 'initial',
-  //         priority: 10,
-  //       },
-  //       styles: {
-  //         name: 'styles',
-  //         test: /\.css$/,
-  //         chunks: 'all',
-  //         enforce: true,
-  //         priority: 20
-  //       }
-  //     }
-  //   },
-  // },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+
+      }
+    },
+  },
 
   resolve: {
     alias: {
