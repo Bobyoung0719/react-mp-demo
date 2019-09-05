@@ -1,7 +1,11 @@
 import ReactDOM from 'react-dom';
-import React, { Component } from 'react';
-import Load from 'components/Load';
+import React, { Component, lazy } from 'react';
+// import Load from 'components/Load';
 import styles from './main.scss';
+
+const LoadAb = lazy(() => import('components/Load'));
+
+console.log(LoadAb, '0000');
 
 class Main extends Component {
   constructor(props) {
@@ -23,9 +27,6 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Load />
-
-        lllll
         <button 
           className={styles.btn}
           onClick={this.handleToPage}>click</button>

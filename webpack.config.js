@@ -1,23 +1,20 @@
 const path = require('path');
 const webpack = require('webpack');
 const px2rem = require('postcss-px2rem');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const {entries, optimization, htmlPligins} = require('./wepack.deploy');
 
 const devMode = process.env.NODE_ENV !== 'production';
-const BASE_PATH = path.resolve(__dirname, 'src');
 
 module.exports = {
-  entry: {
-    main: `./src/main/index.js`, 
-    page: `./src/page/index.js`,
-    common: ['react', 'react-dom']
-  },
+  entry: entries,
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
+
+  // 规则
   module: {
     rules: [
       {
@@ -62,30 +59,11 @@ module.exports = {
       }
     ]
   },
-
+  
   // 代码分离
-  optimization: {
-    // usedExports: devMode,
-    splitChunks: {
-      cacheGroups: {
-        // reactBase: {
-        //   name: 'reactBase',
-        //   test: (module) => {
-        //       return /react|redux|prop-types/.test(module.context);
-        //   },
-        //   chunks: 'initial',
-        //   priority: 10,
-        // },
-        common: {
-          name: 'common',
-          chunks: 'initial',
-          priority: 2,
-          minChunks: 2,
-        },
-      }
-    },
-  },
+  optimization,
 
+  // 设置别名
   resolve: {
     alias: {
       components: path.resolve(__dirname, 'components'),
@@ -93,6 +71,7 @@ module.exports = {
     extensions: ['.js', '.json', '.jsx'],
   },
   
+  // 插件
   plugins: [
     new CleanWebpackPlugin({path: 'dist'}),
     new webpack.HotModuleReplacementPlugin(),
@@ -100,27 +79,12 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
-    new HtmlWebpackPlugin({
-      hash: true,
-      title: 'main',
-      filename: 'main.html',
-      chunks: ['common', 'main'],
-      
-      template: './index.html'
-    }),
-    new HtmlWebpackPlugin({
-      hash: true,
-      title: 'page',
-      filename: 'page.html',
-      chunks: ['common', 'page'],
-      template: './index.html'
-    }),
+    ...htmlPligins,
   ],
+
+  // 开发设置
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
     hot: true,
-    port: 3000,
-    // open: true,
-    compress: true
+    port: 3000
   }
 }
