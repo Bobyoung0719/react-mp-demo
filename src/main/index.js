@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
-import './index.scss';
+import Load from 'components/Load';
+import styles from './main.scss';
 
 class Main extends Component {
   constructor(props) {
@@ -22,8 +23,12 @@ class Main extends Component {
   render() {
     return (
       <div>
-      hahahahah 
-        <button onClick={this.handleToPage}>click</button>
+        <Load />
+
+        lllll
+        <button 
+          className={styles.btn}
+          onClick={this.handleToPage}>click</button>
       </div>
     );
   }

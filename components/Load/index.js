@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-// import './load.scss';
+import styles from './load.scss';
 
-export default class index extends Component {
+class Load extends Component {
   render() {
     return (
-      <div className="ok">
+      <div className={styles.test}>
         ssssssssssssssssssnp
       </div>
     )
   }
 }
+
+export default Load;

@@ -6,15 +6,17 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
+const BASE_PATH = path.resolve(__dirname, 'src');
 
 module.exports = {
   entry: {
-    main: 'src/main/index.js', 
-    page: 'src/page/index.js'
+    main: `./src/main/index.js`, 
+    page: `./src/page/index.js`,
+    common: ['react', 'react-dom']
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, './dist')
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
@@ -26,14 +28,7 @@ module.exports = {
       {
         test: /\.(sa|sc|c|le)ss$/,
         use:[
-          'style-loader',
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../',
-              hmr: devMode
-            }
-          },
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -51,7 +46,7 @@ module.exports = {
           },
           'sass-loader'
         ],
-        include: [path.resolve(__dirname, 'src')]
+        exclude: /node_modules/
       },
       {
         test: /\.(jpe?g|png|gif)$/,
@@ -70,48 +65,62 @@ module.exports = {
 
   // 代码分离
   optimization: {
+    // usedExports: devMode,
     splitChunks: {
-      chunks: 'all',
       cacheGroups: {
-
+        // reactBase: {
+        //   name: 'reactBase',
+        //   test: (module) => {
+        //       return /react|redux|prop-types/.test(module.context);
+        //   },
+        //   chunks: 'initial',
+        //   priority: 10,
+        // },
+        common: {
+          name: 'common',
+          chunks: 'initial',
+          priority: 2,
+          minChunks: 2,
+        },
       }
     },
   },
 
   resolve: {
     alias: {
-      src: path.resolve(__dirname, 'src'),
-      component: path.resolve(__dirname, './components'),
+      components: path.resolve(__dirname, 'components'),
     },
     extensions: ['.js', '.json', '.jsx'],
   },
   
   plugins: [
-    new CleanWebpackPlugin({path: './dist'}),
+    new CleanWebpackPlugin({path: 'dist'}),
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
     new HtmlWebpackPlugin({
+      hash: true,
       title: 'main',
       filename: 'main.html',
-      chunks: ['main'],
-      hash: true,
+      chunks: ['common', 'main'],
+      
       template: './index.html'
     }),
     new HtmlWebpackPlugin({
+      hash: true,
       title: 'page',
       filename: 'page.html',
-      chunks: ['page'],
-      hash: true,
+      chunks: ['common', 'page'],
       template: './index.html'
     }),
   ],
   devServer: {
-    contentBase: path.join(__dirname, "./dist"),
+    contentBase: path.join(__dirname, 'dist'),
     hot: true,
     port: 3000,
+    // open: true,
     compress: true
   }
 }

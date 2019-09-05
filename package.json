@@ -1,5 +1,6 @@
 {
   "name": "react-mp-demo",
+  "engineStrict": ["*.css", "*.scss", "*.less"],
   "version": "1.0.0",
   "description": "react 多页应用",
   "main": "index.js",
