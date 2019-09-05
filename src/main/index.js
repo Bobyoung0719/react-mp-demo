@@ -1,11 +1,13 @@
 import ReactDOM from 'react-dom';
-import React, { Component, lazy } from 'react';
-// import Load from 'components/Load';
+import HOC from '$com/HOC';
+import React, {Component, lazy, Suspense} from 'react';
+
 import styles from './main.scss';
 
-const LoadAb = lazy(() => import('components/Load'));
-
-console.log(LoadAb, '0000');
+// const LoadAb = lazy(() => import('$com/Load'));
+// <Suspense fallback={<div>Loading...</div>}>
+// <LoadAb />
+// </Suspense>
 
 class Main extends Component {
   constructor(props) {
@@ -21,7 +23,9 @@ class Main extends Component {
   
   
   handleToPage() {
-    console.log('duoye');
+    const {methods} = this.props;
+
+    methods.toast('hahahahhahh click')
   }
 
   render() {
@@ -35,7 +39,9 @@ class Main extends Component {
   }
 }
 
+const HoComponent = HOC(Main);
+
 ReactDOM.render(
-  <Main />,
+  <HoComponent />,
   document.getElementById('root')
 );

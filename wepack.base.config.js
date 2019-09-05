@@ -15,21 +15,6 @@ for (let i = 0; i < page.length; i ++) {
   entries[eml.name] = `./src/${eml.name}/index.js`;
 }
 
-// 代码分离
-const optimization = {
-  splitChunks: {
-    cacheGroups: {
-      common: {
-        name: 'common',
-        chunks: 'initial',
-        priority: 2,
-        minChunks: 2,
-        reuseExistingChunk: true
-      }
-    }
-  }
-};
-
 // html 模板
 const htmlTemp = page.map(item => {
   const {name, title} = item;
@@ -45,6 +30,5 @@ const htmlTemp = page.map(item => {
 
 module.exports = {
   entries,
-  optimization,
   htmlPligins: htmlTemp
 };

@@ -1,13 +1,16 @@
 const path = require('path');
-const webpack = require('webpack');
+const Merge = require('webpack-merge');
 const px2rem = require('postcss-px2rem');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const {entries, optimization, htmlPligins} = require('./wepack.deploy');
+const {entries, htmlPligins} = require('./wepack.base.config');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
-module.exports = {
+const cType = devMode ? 'dev' : 'prod';
+const config = require(`./webpack.${cType}.config`);
+
+const base = {
   entry: entries,
   output: {
     filename: '[name].js',
@@ -59,14 +62,11 @@ module.exports = {
       }
     ]
   },
-  
-  // 代码分离
-  optimization,
 
   // 设置别名
   resolve: {
     alias: {
-      components: path.resolve(__dirname, 'components'),
+      $com: path.resolve(__dirname, 'components'),
     },
     extensions: ['.js', '.json', '.jsx'],
   },
@@ -74,17 +74,12 @@ module.exports = {
   // 插件
   plugins: [
     new CleanWebpackPlugin({path: 'dist'}),
-    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
     ...htmlPligins,
-  ],
-
-  // 开发设置
-  devServer: {
-    hot: true,
-    port: 3000
-  }
+  ]
 }
+
+module.exports = Merge(base, config);
