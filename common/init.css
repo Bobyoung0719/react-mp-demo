@@ -1,12 +1,14 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   list-style-type: none;
 }
 
 html, body {
   width: 100%;
   height: 100%;
+  overflow: hidden;
   background-color: #fff
 }
 
@@ -19,4 +21,13 @@ button, input, textarea, a, img {
 :global(#root) {
   width: 100%;
   height: 100%;
+  padding: 80px 0 100px 0;
 }
+
+:global(.container) {
+  width: 100%;
+  height: 100%;
+  padding: 0 25px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+} 

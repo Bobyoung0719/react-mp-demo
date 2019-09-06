@@ -1,12 +1,10 @@
 const path = require('path');
 const Merge = require('webpack-merge');
-const px2rem = require('postcss-px2rem');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {entries, htmlPligins} = require('./wepack.base.config');
 
 const devMode = process.env.NODE_ENV !== 'production';
-
 const cType = devMode ? 'dev' : 'prod';
 const config = require(`./webpack.${cType}.config`);
 
@@ -38,12 +36,7 @@ const base = {
               }
             }
           },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: [px2rem({remUnit: 75})]
-            }
-          },
+          'postcss-loader',
           'sass-loader'
         ],
         exclude: /node_modules/
@@ -66,6 +59,7 @@ const base = {
   // 设置别名
   resolve: {
     alias: {
+      util: path.resolve(__dirname, 'utils'),
       $com: path.resolve(__dirname, 'components'),
     },
     extensions: ['.js', '.json', '.jsx'],

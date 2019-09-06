@@ -1,13 +1,16 @@
 {
   "name": "react-mp-demo",
-  "engineStrict": [
-    "*.css",
-    "*.scss",
-    "*.less"
-  ],
   "version": "1.0.0",
   "description": "react 多页应用",
   "main": "index.js",
+  "browserslist": [
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ],
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development",
