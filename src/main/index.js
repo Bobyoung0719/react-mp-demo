@@ -47,7 +47,7 @@ class Main extends Component {
           <p onClick={this.showToast}>show-toast</p>
           <div className={cns(
             styles.d1,
-            styles[1>0 ? 'c1' : 'c2']
+            styles[1 > 0 ? 'c1' : 'c2']
           )}>classnames-test111</div>
 
           <div className={cns({
