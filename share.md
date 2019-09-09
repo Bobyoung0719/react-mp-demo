@@ -17,3 +17,23 @@ webpack 4.x + babel 7.x + react 16.6 + less
   2，HOC 高阶组件的使用
     定义：高阶组件就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件
     解决公共模块，工具数据的管理问题
+
+
+webpack 笔记
+
+webpack 模块打包工具
+
+1, ES module 模块 
+// 导出方式
+export default xxx;
+
+// 引入方式
+import * from '...'
+
+2, CommonJS 模块引入模式
+// 导出方式
+export.modules = xxx
+
+// 引入方式
+var xx = require('xxx')
+
