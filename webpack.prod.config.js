@@ -1,4 +1,5 @@
 const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
   optimization: {
@@ -6,7 +7,7 @@ module.exports = {
       cacheGroups: {
         common: {
           name: 'common',
-          chunks: 'initial',
+          chunks: 'all',
           priority: 2,
           minChunks: 2
         }
@@ -27,6 +28,16 @@ module.exports = {
           }
         },
         extractComments: true
+      }),
+      new OptimizeCssAssetsPlugin({
+        cssProcessorOptions: {
+          safe: true,
+          autoprefixer: {disable: true},
+          mergeLonghand: false,
+          disCardComments: {
+            removeAll: true
+          }
+        }
       })
     ]
   }
