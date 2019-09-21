@@ -7,5 +7,5 @@ module.exports = {
   devServer: {
     hot: true,
     contentBase: './dist'
-  }
+  },so
 }

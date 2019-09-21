@@ -6,8 +6,6 @@ const {entries, htmlPligins} = require('./wepack.base.config');
 
 const devMode = process.env.NODE_ENV === 'development';
 
-console.log(devMode, 'devMode');
-
 const cType = devMode ? 'dev' : 'prod';
 const config = require(`./webpack.${cType}.config`);
 
@@ -71,10 +69,6 @@ const base = {
   // 插件
   plugins: [
     new CleanWebpackPlugin({path: 'dist'}),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css'
-    }),
     ...htmlPligins,
   ]
 }

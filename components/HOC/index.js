@@ -10,37 +10,18 @@ const HOC = WrappedComponent => {
       super(props);
       this.state = {
         toastMsg: '',
-        userInfo: null,
-        curDate: '',
-        themeColor: '#cccccc',
         dialogVisible: false,
         loadingVisible: false
       }
-
-      this.changeSkin = this.changeSkin.bind(this);
     }
 
     componentDidMount() {
-      const themeColor = localStorage.getItem('themeColor') || '#cccccc';
-
-      setTimeout(() => {
-        this.setState({
-          themeColor,
-          userInfo: {
-            name: 'yangtao',
-            address: '上海市浦东新区',
-            job: 'web前端开发工程师'
-          }
-        });
-      }, 1000);
-    }
-
-    // 换肤功能
-    changeSkin() {
-      const color = '#'+(Math.random()*0xffffff<<0).toString(16); 
-
-      this.setState({themeColor: color}, () => {
-        localStorage.setItem('themeColor', color);
+      this.setState({
+        userInfo: {
+          name: 'yangtao',
+          address: '上海市浦东新区',
+          job: 'web前端开发工程师'
+        }
       });
     }
 
@@ -50,9 +31,7 @@ const HOC = WrappedComponent => {
           setTimeout(() =>this.setState({toastMsg: ''}), 2000);
         }),
         load: status => this.setState({loadingVisible: status}),
-        showDialog: msgContent => this.setState({dialogVisible: msgContent}),
-        getCurTime: () => this.setState({curDate: +new Date()}),
-        changeSkin: this.changeSkin
+        showDialog: msgContent => this.setState({dialogVisible: msgContent})
       }
     }
 
@@ -66,19 +45,10 @@ const HOC = WrappedComponent => {
       return (
         <React.Fragment>
           <Toast toastMsg={toastMsg} />
-          <div className={styles.header}>
-            <span>这里是头部导航栏</span>
-            <span onClick={this.changeSkin}>换肤</span>
-          </div>
-
           <WrappedComponent
             {...this.props}
             methods={this.getMethod()} 
-            commonData={{
-              userInfo,
-              curDate,
-              themeColor
-            }}
+            commonData={{commData: {}}}
           />
         </React.Fragment>
       )
