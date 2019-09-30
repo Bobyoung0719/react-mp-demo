@@ -9,14 +9,7 @@ class Page extends Component {
     console.log(this.props, 'page-page');
   }
 
-  showToast = () => {
-    const {methods} = this.props;
-
-    methods.toast('这是page页面');
-  }
-
   render() {
-    const {methods} = this.props;
 
     return (
       <React.Fragment>
