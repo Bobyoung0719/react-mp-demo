@@ -22,13 +22,13 @@ module.exports = {
           compress: {
             drop_console: true,
             drop_debugger: true,
-            pure_funcs: ['console.log']
-          },
-          output: {
-            comments: /@license/i,
+            pure_funcs: ['console.log'],
+            output: {
+              comments: false
+            }
           }
         },
-        extractComments: true
+        extractComments: false
       }),
       new OptimizeCssAssetsPlugin({
         cssProcessorOptions: {

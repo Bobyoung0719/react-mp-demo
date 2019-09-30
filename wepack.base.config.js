@@ -24,7 +24,8 @@ const htmlTemp = page.map(item => {
     hash: true,
     filename: `${name}.html`,
     chunks: ['common', name],
-    template: './index.html'
+    template: './index.html',
+    minify: {collapseWhitespace: true}
   });
 });
 
