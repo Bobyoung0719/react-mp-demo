@@ -2,6 +2,8 @@ import React from 'react';
 import Mask from '../Mask';
 import styles from './load.scss';
 
+console.log(';;;;;;;;;;');
+
 const Loading = ({visible}) => 
   <Mask 
     visible={visible}

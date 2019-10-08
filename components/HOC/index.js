@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Toast from '$com/Toast';
-import Loading from '$com/Loading';
+// import Loading from '$com/Loading';
 import styles from './hoc.scss';
 import '../../common/init.css';
 
@@ -39,7 +39,7 @@ const HOC = WrappedComponent => {
       const {userInfo, toastMsg, themeColor, curDate} = this.state;
 
       if(userInfo == null) {
-        return <Loading visible={!userInfo} />
+        return '<Loading visible={!userInfo} />'
       }
 
       return (

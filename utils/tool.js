@@ -2,7 +2,7 @@ import Uri from 'urijs';
 
 const curUrl = window.location.href;
 
-export function getRealUrl(page, params = {a:12, b: 2}) {
+export function getRealUrl(page, params) {
   let url = new Uri(curUrl);
 
   url.filename(`${page}.html`);

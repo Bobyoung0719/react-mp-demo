@@ -1,11 +1,6 @@
 import ReactDOM from 'react-dom';
+import React, {Component} from 'react';
 import HOC from '$com/HOC';
-import cns from 'classnames';
-import {isEqual} from 'loadsh';
-import Mask from '$com/Mask';
-import React, {Component, lazy, Suspense} from 'react';
-
-
 import styles from './main.scss';
 
 class Main extends Component {
@@ -14,23 +9,13 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    let isA = isEqual({a: 1}, [2]);
-
-    console.log(isA);
-
-    let entry = {
-      a: 'xx',
-      b: 'xx',
-      common: ['react', 'react-dom']
-    }
   }
-  
 
   render() {
 
     return (
       <div className={styles.container}>
-        主页-----
+       首页---
       </div>
     );
   }
