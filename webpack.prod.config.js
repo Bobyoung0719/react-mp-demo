@@ -6,12 +6,18 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        common: {
-          name: 'common',
+        vendor: {
+          name: 'vendor',
           chunks: 'all',
-          priority: 2,
-          minChunks: 2
-        }
+          // test: /[\\/]node_modules[\\/]/
+        },
+        // common: {
+        //   name: 'common',
+        //   chunks: 'all',
+        //   test: /[\\/]src[\\/][\D\d]*\.js/g,
+        //   minChunks: 2,
+        //   minSize: 0
+        // }
       }
     },
     minimize: true,

@@ -7,7 +7,7 @@ const page = [
 ];
 
 // 入口文件
-let entries = {common: ['react', 'react-dom']};
+let entries = {};
 
 for (let i = 0; i < page.length; i ++) {
   let eml = page[i];
@@ -23,9 +23,9 @@ const htmlTemp = page.map(item => {
     title,
     hash: true,
     filename: `${name}.html`,
-    chunks: ['common', name],
+    chunks: ['common',  name],
     template: './index.html',
-    minify: {collapseWhitespace: true}
+    // minify: {collapseWhitespace: true}
   });
 });
 

@@ -63,7 +63,7 @@ const base = {
       util: path.resolve(__dirname, 'utils'),
       $com: path.resolve(__dirname, 'components'),
     },
-    extensions: ['.js', '.json', '.jsx', '.ts'],
+    extensions: ['.js', '.json', '.jsx'],
   },
   
   // 插件
