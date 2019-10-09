@@ -8,16 +8,8 @@ module.exports = {
       cacheGroups: {
         vendor: {
           name: 'vendor',
-          chunks: 'all',
-          // test: /[\\/]node_modules[\\/]/
+          chunks: 'all'
         },
-        // common: {
-        //   name: 'common',
-        //   chunks: 'all',
-        //   test: /[\\/]src[\\/][\D\d]*\.js/g,
-        //   minChunks: 2,
-        //   minSize: 0
-        // }
       }
     },
     minimize: true,
