@@ -37,10 +37,6 @@ const HOC = WrappedComponent => {
     render() {
       const {userInfo, toastMsg} = this.state;
 
-      if(userInfo == null) {
-        return <Loading visible={!userInfo} />
-      }
-
       return (
         <React.Fragment>
           <Toast toastMsg={toastMsg} />
