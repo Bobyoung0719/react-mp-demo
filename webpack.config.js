@@ -12,7 +12,7 @@ const config = require(`./webpack.${cType}.config`);
 const base = {
   entry: entries,
   output: {
-    filename: '[name].js',
+    filename: `[name].[${devMode ? '' : 'chunk'}hash:5].js`,
     path: path.resolve(__dirname, 'dist')
   },
 
@@ -60,7 +60,7 @@ const base = {
   // 设置别名
   resolve: {
     alias: {
-      util: path.resolve(__dirname, 'utils'),
+      utils: path.resolve(__dirname, 'utils'),
       $com: path.resolve(__dirname, 'components'),
     },
     extensions: ['.js', '.json', '.jsx'],

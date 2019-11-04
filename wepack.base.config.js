@@ -23,9 +23,9 @@ const htmlTemp = page.map(item => {
     title,
     hash: true,
     filename: `${name}.html`,
-    chunks: ['vendor',  name],
+    chunks: ['mainfest', 'vendor', 'common', 'styles', name],
     template: './index.html',
-    // minify: {collapseWhitespace: true}
+    minify: {collapseWhitespace: true}
   });
 });
 

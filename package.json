@@ -67,8 +67,6 @@
     "loadsh": "0.0.4",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-id-swiper": "^2.3.2",
-    "swiper": "^4.5.1",
     "urijs": "^1.19.1"
   }
 }

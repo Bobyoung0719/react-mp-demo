@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import Toast from '$com/Toast';
-import styles from './hoc.scss';
 import '../../common/init.css';
 
 const HOC = WrappedComponent => {
@@ -8,44 +6,29 @@ const HOC = WrappedComponent => {
     constructor(props) {
       super(props);
       this.state = {
-        toastMsg: '',
-        dialogVisible: false,
-        loadingVisible: false
       }
     }
 
     componentDidMount() {
-      this.setState({
-        userInfo: {
-          name: 'yangtao',
-          address: '上海市浦东新区',
-          job: 'web前端开发工程师'
-        }
-      });
+      console.log('did~~~');
     }
 
     getMethod() {
       return {
-        toast: msg => this.setState({toastMsg: msg}, () => {
-          setTimeout(() =>this.setState({toastMsg: ''}), 2000);
-        }),
-        load: status => this.setState({loadingVisible: status}),
-        showDialog: msgContent => this.setState({dialogVisible: msgContent})
+        test() {
+          console.log('test function');
+        }
       }
     }
 
     render() {
-      const {userInfo, toastMsg} = this.state;
 
       return (
-        <React.Fragment>
-          <Toast toastMsg={toastMsg} />
-          <WrappedComponent
-            {...this.props}
-            methods={this.getMethod()} 
-            commonData={{commData: {}}}
-          />
-        </React.Fragment>
+        <WrappedComponent
+          {...this.props}
+          methods={this.getMethod()} 
+          commonData={{commData: {}}}
+        />
       )
     }
   }
