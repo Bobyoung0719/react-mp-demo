@@ -12,7 +12,8 @@ const config = require(`./webpack.${cType}.config`);
 const base = {
   entry: entries,
   output: {
-    filename: `[name].[${devMode ? '' : 'chunk'}hash:5].js`,
+    filename: `[name].[${devMode ? 'hash' : 'contentHash'}:8].js`,
+    chunkFilename: `[name].[${devMode ? 'hash' : 'contentHash'}:8].js`,
     path: path.resolve(__dirname, 'dist')
   },
 

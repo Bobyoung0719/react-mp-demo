@@ -12,14 +12,7 @@ module.exports = {
           name: 'vendor',
           priority: -10,
           test: /node_modules/
-        },
-        styles: {
-          name: 'styles',
-          test: /\.(less|css)$/,
-          chunks: 'all',
-          enforce: true,
-          priority: 20
-        },
+        }
       }
     },
     minimizer: [

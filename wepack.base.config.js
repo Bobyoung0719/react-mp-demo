@@ -23,7 +23,7 @@ const htmlTemp = page.map(item => {
     title,
     hash: true,
     filename: `${name}.html`,
-    chunks: ['mainfest', 'vendor', 'common', 'styles', name],
+    chunks: ['mainfest', 'vendor', name],
     template: './index.html',
     minify: {collapseWhitespace: true}
   });
