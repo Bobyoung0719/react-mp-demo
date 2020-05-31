@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// 页面， 只需增加页面即可
+// 页面，只需增加页面即可
 const page = [
   {name: 'main', title: '主页'},
   {name: 'page', title: 'test-page'},
@@ -16,7 +16,7 @@ for (let i = 0; i < page.length; i ++) {
 }
 
 // html 模板
-const htmlTemp = page.map(item => {
+const htmlTemPlugin = page.map(item => {
   const {name, title} = item;
 
   return new HtmlWebpackPlugin({
@@ -24,12 +24,9 @@ const htmlTemp = page.map(item => {
     hash: true,
     filename: `${name}.html`,
     chunks: ['mainfest', 'vendor', name],
-    template: './index.html',
+    template: './html/index.html',
     minify: {collapseWhitespace: true}
   });
 });
 
-module.exports = {
-  entries,
-  htmlPligins: htmlTemp
-};
+module.exports = {entries, htmlTemPlugin};

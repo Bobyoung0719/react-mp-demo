@@ -1,46 +1,14 @@
 const path = require('path');
-const Merge = require('webpack-merge');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const {entries, htmlPligins} = require('./wepack.base.config');
+const {entries, htmlTemPlugin} = require('./html/pages');
 
-const devMode = process.env.NODE_ENV === 'development';
-
-const cType = devMode ? 'dev' : 'prod';
-const config = require(`./webpack.${cType}.config`);
-
-const base = {
+module.exports = {
   entry: entries,
-  output: {
-    filename: `[name].[${devMode ? 'hash' : 'contentHash'}:8].js`,
-    chunkFilename: `[name].[${devMode ? 'hash' : 'contentHash'}:8].js`,
-    path: path.resolve(__dirname, 'dist')
-  },
-
-  // 规则
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(sa|sc|c|le)ss$/,
-        use:[
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              // 开启cssmodule
-              modules: {
-                localIdentName: '[name]_[local]-[hash:base64:5]'
-              }
-            }
-          },
-          'postcss-loader',
-          'sass-loader'
-        ],
         exclude: /node_modules/
       },
       {
@@ -69,9 +37,7 @@ const base = {
   
   // 插件
   plugins: [
-    new CleanWebpackPlugin({path: 'dist'}),
-    ...htmlPligins,
+    ...htmlTemPlugin,
+    new CleanWebpackPlugin({path: 'dist'})
   ]
-}
-
-module.exports = Merge(base, config);
+};
