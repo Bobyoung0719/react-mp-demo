@@ -1,24 +1,12 @@
 import ReactDOM from 'react-dom';
-import React, { Component } from 'react';
+import React from 'react';
 import HOC from '$com/HOC';
-import Test from '$com/Test';
-import test from 'utils/test';
-import styles from './page.scss';
 
-class Page extends Component {
+function Page(props) {
 
-  componentDidMount() {
-  }
-
-  render() {
-
-    return (
-      <React.Fragment>
-       这是第二页啊嗷嗷啊啊啊啊啊
-       <Test />
-      </React.Fragment>
-    );
-  }
+  return (
+    <div>0000000000</div>
+  )
 }
 
 const HoComponent = HOC(Page);
