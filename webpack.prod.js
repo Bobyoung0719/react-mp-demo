@@ -3,7 +3,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const path = require('path');
-const Merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const commonConfig = require('./webpack.common');
 
 const prodConfig = {
@@ -75,4 +75,4 @@ const prodConfig = {
   ]
 }
 
-module.exports = Merge(prodConfig, commonConfig);
+module.exports = merge(prodConfig, commonConfig);

@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const Merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const commonConfig = require('./webpack.common');
 
 const devConfig = {
@@ -13,7 +13,7 @@ const devConfig = {
   module: {
     rules: [
       {
-        test: /\.(sa|sc|c|le)ss$/,
+        test: /\.(sc|c)ss$/,
         use:[
           'style-loader',
           {
@@ -36,5 +36,5 @@ const devConfig = {
   ],
 };
 
-module.exports = Merge(devConfig, commonConfig);
+module.exports = merge(devConfig, commonConfig);
 
