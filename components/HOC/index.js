@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import '../../common/init.css';
+import React from 'react';
+import '../../html/init.css';
 
 
 function HOC(WrappedComponent) {
