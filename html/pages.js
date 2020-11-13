@@ -6,27 +6,22 @@ const page = [
   {name: 'page', title: 'test-page'},
 ];
 
-// 入口文件
+// 生成入口文件及html模板
 let entries = {};
 
-for (let i = 0; i < page.length; i ++) {
-  let eml = page[i];
-
-  entries[eml.name] = `./src/${eml.name}/index.js`;
-}
-
-// html 模板
 const htmlTemPlugin = page.map(item => {
-  const {name, title} = item;
+  const { name, title } = item;
+
+  entries[name] = `./src/${name}/index.js`;
 
   return new HtmlWebpackPlugin({
     title,
     hash: true,
     filename: `${name}.html`,
-    chunks: ['mainfest', 'vendor', name],
     template: './html/index.html',
-    minify: {collapseWhitespace: true}
+    minify: {collapseWhitespace: true},
+    chunks: ['mainfest', 'vendor', name]
   });
 });
 
-module.exports = {entries, htmlTemPlugin};
+module.exports = { entries, htmlTemPlugin };

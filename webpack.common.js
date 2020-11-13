@@ -38,6 +38,6 @@ module.exports = {
   // 插件
   plugins: [
     ...htmlTemPlugin,
-    new CleanWebpackPlugin({path: 'dist'})
+    new CleanWebpackPlugin({ path: path.resolve(__dirname, 'dist') })
   ]
 };

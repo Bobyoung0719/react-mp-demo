@@ -1,9 +1,9 @@
-import Uri from 'urijs';
+import URI from 'urijs';
 
 const curUrl = window.location.href;
 
 export function getRealUrl(page, params) {
-  let url = new Uri(curUrl);
+  let url = new URI(curUrl);
 
   url.filename(`${page}.html`);
   if (params) {
