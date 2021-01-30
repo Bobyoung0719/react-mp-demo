@@ -1,6 +1,6 @@
 const path = require('path');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const {entries, htmlTemPlugin} = require('./html/pages');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { entries, htmlTemPlugin } = require('./html/pages');
 
 module.exports = {
   entry: entries,

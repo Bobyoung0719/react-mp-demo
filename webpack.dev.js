@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const {merge} = require('webpack-merge');
+const { merge}  = require('webpack-merge');
 const commonConfig = require('./webpack.common');
 
 const devConfig = {
@@ -30,6 +30,9 @@ const devConfig = {
         exclude: /node_modules/
       }
     ]
+  },
+  devServer: {
+    hot: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
