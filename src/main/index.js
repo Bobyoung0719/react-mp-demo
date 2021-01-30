@@ -8,7 +8,7 @@ function Main(props) {
 
   return (
     <div className={sty.container}>
-      首页---
+      首页-
       <p onClick={() => getRealUrl('page')}>跳转第二页</p>
     </div>
   );
