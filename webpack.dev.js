@@ -6,8 +6,8 @@ const commonConfig = require('./webpack.common');
 const devConfig = {
   module: 'development',
   output: {
-    filename: `[name].[hash:8].js`,
-    chunkFilename: `[name].[hash:8].js`,
+    filename: '[name].[hash:8].js',
+    chunkFilename: '[name].[hash:8].js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
