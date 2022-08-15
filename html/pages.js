@@ -1,4 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const fs = require('fs');
+
+// const file = fs.readFile('src');
+
+// console.log(file, 2222)
+
 
 // 页面，只需增加页面即可
 const page = [
